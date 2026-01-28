@@ -6,4 +6,11 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "numpy>=2.4.1",
+    "plotly>=6.5.2",
+    "scipy>=1.17.0",
+    "streamlit>=1.53.1",
+    "surprise",
 ]
+
+[tool.uv.sources]
+surprise = { path = "libs/surprise-0.1.0-py3-none-any.whl" }
