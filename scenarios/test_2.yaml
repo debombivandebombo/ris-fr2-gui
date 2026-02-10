@@ -5,7 +5,7 @@ environment:
     boresight: "x" # String requerido
     ncol: 40
     nrow: 40
-    frequency_hz: 28.5e9
+    frequency_hz: 28500.120e6
     
     # 1 Bit Configuration (Optional explicitly defined)
     num_bits: 1
@@ -15,10 +15,6 @@ environment:
     att_dict:
       0: 0.9
       1: 0.9
-      
-    # Spacing (Optional, defaults to lambda/2 if omitted)
-    delta_h: 0.00526
-    delta_v: 0.00526
 
   defaults:
     tx_gain: 16
@@ -30,24 +26,35 @@ timeline:
     action: "power_on"
     delay_after: 2
 
-  - step: "Calibration (All Zeros)"
+  - step: "Config All Zeros"
     action: "configure"
     # Ahora agrupados en params
     params:
       conf_mode: "zeros"
       apply_to: "both"
-    delay_after: 5
+    delay_after: 30
 
   - step: "Optimization Case 1"
     action: "configure"
     params:
       conf_mode: "optimize"
-      apply_to: "v"
-      wave_model: "plane"
-      tx_pos: [-5.0, 0.0, 1.0]
-      rx_pos: [5.0, 0.0, 1.0]
-      optimizer: "grid_search"
-    delay_after: 10
+      apply_to: "both"
+      wave_model: "spherical"
+      tx_pos: [21, 0.0, 0.0]
+      rx_pos: [4, 3.7, 0.0]
+      optimizer: "direct_disc"
+    delay_after: 60
+  
+  - step: "Optimization BS 1"
+    action: "configure"
+    params:
+      conf_mode: "optimize"
+      apply_to: "both"
+      wave_model: "spherical"
+      tx_pos: [21, 0.0, 0.0]
+      rx_pos: [4, 3.7, 0.0]
+      optimizer: "direct_disc"
+    delay_after: 60
 
   - step: "Shutdown"
     action: "power_off"

@@ -11,7 +11,7 @@ class RISConfig:
 class RISServerController:
     def __init__(self, ip="127.0.0.1", port=17000):
         self.addr = (ip, port)
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     def connect(self):
         self._send_command("ON")

@@ -123,7 +123,7 @@ class RISScenarioRunner:
             pattern = np.random.randint(0, max_state, size=(rows, cols))
         elif conf_mode == "optimize":
             if log_callback:
-                log_callback("  Calculating surpRISe optimization...")
+                log_callback("  Calculating RIS optimization...")
             pattern = self._calculate_optimization(params)
 
         # Lógica de polarización

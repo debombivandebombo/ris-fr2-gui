@@ -131,3 +131,12 @@ timeline:
 If you don't upload a YAML file, you can use the interactive table in the Scenario Manager tab to add steps manually.
 
 - Note: The UI editor is simplified. For complex geometries (changing TX/RX positions per step), using a YAML file is recommended.
+
+## Fast checks of the RIS
+# Test of the RIS
+```bash
+$env:PYTHONPATH = "src"; uv run python src/scripts/test_ris_bridge.py
+```
+```bash
+$env:PYTHONPATH = "src"; uv run python src/scripts/test_ris_bf.py
+```
