@@ -49,7 +49,7 @@ cd ../gw-ris-fr2-sandbox
 uv run python ris_hardware_server.py
 ```
 
-### 2. Launch the GUI
+### Option 2a. Launch the GUI
 
 In this project folder (`gw-ris-fr2-gui`), launch the Streamlit app:
 
@@ -57,6 +57,15 @@ In this project folder (`gw-ris-fr2-gui`), launch the Streamlit app:
 # Note: Use app2.py (or rename it to app.py if preferred)
 uv run streamlit run app2.py
 ```
+
+### Option 2b. Use CLI instructions
+
+Update `yaml`file following below instructions and lucnh it with the following command:
+
+```bash
+uv run python run_scenario.py scenarios/test_1.yaml 
+```
+ 
 
 ## Scenario Manager & Automated Tests
 The Scenario Manager tab allows you to execute sequences of actions automatically. You can define these sequences using the visual table editor in the UI or by uploading a YAML configuration file.
