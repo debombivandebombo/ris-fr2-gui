@@ -107,5 +107,8 @@ if __name__ == "__main__":
     # 1. Basic command
     # uv run python run_scenario.py scenarios/test_1bit.yaml
 
-    # 2. Custom IP and port
-    # uv run python run_scenario.py scenarios/test_1bit.yaml --ip 192.168.1.50 --port 8080
+    # 2a. Custom IP and port for FR2 !
+    # uv run python run_scenario.py scenarios/test_1.yaml --ip 127.0.0.1 --port 17000
+
+    # 2b. Custom IP and port for FR1 !
+    # uv run python run_scenario.py scenarios/test_fr1.yaml --ip 127.0.0.1 --port 18000
