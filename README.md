@@ -60,10 +60,10 @@ uv run streamlit run app2.py
 
 ### Option 2b. Use CLI instructions
 
-Update `yaml`file following below instructions and lucnh it with the following command:
+Update `yaml`file following below instructions and lucnh it with the following command (`ip` can be ommited, but `port` should be **17000 for FR2** and **18000 for FR1**):
 
 ```bash
-uv run python run_scenario.py scenarios/test_1.yaml 
+uv run python run_scenario.py scenarios/test_fr1.yaml --ip 127.0.0.1 --port 18000
 ```
  
 
