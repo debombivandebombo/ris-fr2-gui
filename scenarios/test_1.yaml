@@ -20,6 +20,9 @@ environment:
     tx_gain: 16
     rx_gain: 16
     wave_model: "spherical"
+    # --- POSICIONES GENÉRICAS / REALES ---
+    tx_pos: [4.0, 4.0, 0]  # TX físico real
+    rx_pos: [6.8, 0.0, 0]   # RX físico real (para pasos estáticos)
 
 timeline:
   - step: "Initialization"
@@ -32,48 +35,31 @@ timeline:
     params:
       conf_mode: "zeros"
       apply_to: "both"
-    delay_after: 60
+    delay_after: 30
 
   - step: "Optimization Case 1"
     action: "configure"
     params:
       conf_mode: "optimize"
-      apply_to: "h"
-      wave_model: "spherical"
-      tx_pos: [21, 0.0, 0.0]
-      rx_pos: [4, 3.7, 0.0]
-      optimizer: "direct_disc"
-    delay_after: 60
-  
-  - step: "Optimization Case 2"
-    action: "configure"
-    params:
-      conf_mode: "optimize"
-      apply_to: "h"
-      wave_model: "spherical"
-      tx_pos: [21, 0.0, 0.0]
-      rx_pos: [4, 3.7, 0.0]
-      optimizer: "1d_search"
-    delay_after: 60
-
-  - step: "Optimization Case 3"
-    action: "configure"
-    params:
-      conf_mode: "optimize"
-      apply_to: "h"
-      wave_model: "spherical"
-      tx_pos: [21, 0.0, 0.0]
-      rx_pos: [4, 3.7, 0.0]
-      optimizer: "iterative"
-    delay_after: 60
-
-  - step: "Random Config"
-    action: "configure"
-    # Ahora agrupados en params
-    params:
-      conf_mode: "random"
       apply_to: "both"
-    delay_after: 60
+      optimizer: "direct_disc"
+    delay_after: 30
+
+  - step: "Short Sweep (3 Points)"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -10.0
+      stop_angle: 10.0
+      step_angle: 10.0  # -10, 0, 10 (3 puntos)
+      distance: 6.8
+      fixed_angle: 90.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 30
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
 
   - step: "Shutdown"
     action: "power_off"

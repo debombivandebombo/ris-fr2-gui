@@ -4,7 +4,7 @@ import sys
 import time
 from pathlib import Path
 
-# --- 1. CONFIGURATION OF PATHS (Same as app2.py) ---
+# --- 1. CONFIGURATION OF PATHS ---
 ROOT_DIR = Path(__file__).parent
 LIBS_DIR = ROOT_DIR / "libs"
 
@@ -26,67 +26,66 @@ def console_log(message: str):
 
 # --- 3. MAIN LOGIC ---
 def main():
-    # Define command line arguments
-    parser = argparse.ArgumentParser(
-        description="CLI RIS scenario executor"
-    )
-    parser.add_argument(
-        "file", 
-        type=str, 
-        help="YAML file path of the scenario"
-    )
-    parser.add_argument(
-        "--ip", 
-        type=str, 
-        default="127.0.0.1", 
-        help="IP of the RIS server (Default: 127.0.0.1)"
-    )
-    parser.add_argument(
-        "--port", 
-        type=int, 
-        default=17000, 
-        help="Port of the RIS server (Default: 17000)"
-    )
+    parser = argparse.ArgumentParser(description="CLI RIS scenario executor")
+    parser.add_argument("file", type=str, help="YAML file path of the scenario")
+    
+    # Connection args
+    parser.add_argument("--ip", type=str, default="127.0.0.1", help="IP of the RIS server")
+    parser.add_argument("--port", type=int, default=17000, help="Port of the RIS server")
+    
+    # Logging args
+    parser.add_argument("--json", action="store_true", help="Enable local JSONL logging (Default: Disabled)")
+    
+    # Influx args (Default: None/Disabled)
+    parser.add_argument("--influx", type=str, default=None, help="IP of InfluxDB/Telegraf to send metrics via UDP")
 
     args = parser.parse_args()
     yaml_path = Path(args.file)
 
-    # Basic validations
     if not yaml_path.exists():
         print(f"❌ The file does not exist: {yaml_path}")
         sys.exit(1)
 
     print(f"🚀 Starting CLI scenario executor")
     print(f"📂 Loading scenario: {yaml_path.name}")
-    print(f"🔌 Connecting to {args.ip}:{args.port}...")
+    
+    # Log Status Feedback
+    if args.json:
+        print(f"💾 Local Logging: ENABLED (logs/ folder)")
+    else:
+        print(f"💾 Local Logging: DISABLED")
+
+    if args.influx:
+        print(f"📡 InfluxDB Sending: ENABLED ({args.influx}:8094)")
+    else:
+        print(f"📡 InfluxDB Sending: DISABLED")
+
+    print(f"🔌 Connecting to RIS {args.ip}:{args.port}...")
 
     # Instantiate Controller
     controller = RISServerController(ip=args.ip, port=args.port)
     
-    # Instantiate Runner
-    runner = RISScenarioRunner(controller)
+    # Instantiate Runner with logging preferences
+    runner = RISScenarioRunner(
+        controller, 
+        enable_json_log=args.json,
+        influx_ip=args.influx
+    )
 
     try:
-        # Cargar YAML
         with open(yaml_path, 'r') as f:
             config_data = yaml.safe_load(f)
 
-        # Cargar configuración en el Runner
         runner.load_config(config_data)
-        
         timeline = config_data.get('timeline', [])
         total_steps = len(timeline)
         
         print(f"📋 Steps detected: {total_steps}\n")
         print("-" * 40)
 
-        # Execution loop
         for i, step in enumerate(timeline):
-            # Simple text progress bar
             step_num = i + 1
             print(f"🔹 Step {step_num}/{total_steps}")
-            
-            # Run step passing 'print' (or our wrapper function) as callback
             runner.run_step(step, log_callback=console_log)
             print("-" * 40)
 
@@ -112,3 +111,6 @@ if __name__ == "__main__":
 
     # 2b. Custom IP and port for FR1 !
     # uv run python run_scenario.py scenarios/test_fr1.yaml --ip 127.0.0.1 --port 18000
+
+    # 3. Enable influx connection and JSONL logging
+    # uv run python run_scenario.py scenarios/test.yaml --influx 10.0.26.5 --json

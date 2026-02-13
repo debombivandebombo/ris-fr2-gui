@@ -55,8 +55,10 @@ def load_config(path):
         except:
             raise ValueError(f"'{name}' debe ser float convertible")
 
-    timestamp_start = as_float(cfg["timestamp_start"], "timestamp_start")
-    timestamp_end   = as_float(cfg["timestamp_end"], "timestamp_end")
+    #timestamp_start = as_float(cfg["timestamp_start"], "timestamp_start")
+    #timestamp_end   = as_float(cfg["timestamp_end"], "timestamp_end")
+    timestamp_start = cfg["timestamp_start"]
+    timestamp_end   = cfg["timestamp_end"]
 
     # expand vec
     def expand(v):
@@ -78,8 +80,8 @@ def load_config(path):
         "rx_position_z": rx["z"],
         "command_info": cfg["command_info"],    # TAG
         "bit_pattern_hex": bit_pattern_hex,     # FIELD (hex)
-        "timestamp_start": timestamp_start,
-        "timestamp_end": timestamp_end,
+        "ts_start": timestamp_start,
+        "ts_end": timestamp_end,
     }
 
 
@@ -116,7 +118,7 @@ def build_run_id(data):
 # ============================================================
 #  Build Influx Line Protocol string
 # ============================================================
-def format_line_protocol(data, run_id):
+def format_line_protocol(data, run_id=0):
     # TAGS
     tags = (
         #f"run_id={escape_tag(run_id)},"
@@ -169,8 +171,8 @@ if __name__ == "__main__":
     try:
         data = load_config(config_path)
 
-        run_id = build_run_id(data)
-        line = format_line_protocol(data, run_id)
+        #run_id = build_run_id(data)
+        line = format_line_protocol(data)
 
         print("Línea LP generada:\n")
         print(line)
@@ -179,7 +181,7 @@ if __name__ == "__main__":
         send_udp(telegraf_ip, line, debug=debug)
 
         print(f"Enviado a Telegraf (UDP) → {telegraf_ip}:{PORT}")
-        print(f"run_id={run_id}")
+        #print(f"run_id={run_id}")
 
     except Exception as e:
         print(f"ERROR: {e}")
