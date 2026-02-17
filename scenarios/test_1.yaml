@@ -21,8 +21,8 @@ environment:
     rx_gain: 16
     wave_model: "spherical"
     # --- POSICIONES GENÉRICAS / REALES ---
-    tx_pos: [4.0, 4.0, 0]  # TX físico real
-    rx_pos: [6.8, 0.0, 0]   # RX físico real (para pasos estáticos)
+    tx_pos: [1.5, 0.8, 0]  # TX físico real
+    rx_pos: [1.9, 0.0, 0]   # RX físico real (para pasos estáticos)
 
 timeline:
   - step: "Initialization"
@@ -35,7 +35,7 @@ timeline:
     params:
       conf_mode: "zeros"
       apply_to: "both"
-    delay_after: 30
+    delay_after: 3
 
   - step: "Optimization Case 1"
     action: "configure"
@@ -43,19 +43,35 @@ timeline:
       conf_mode: "optimize"
       apply_to: "both"
       optimizer: "direct_disc"
-    delay_after: 30
+    delay_after: 3
 
-  - step: "Short Sweep (3 Points)"
+  # - step: "Short Sweep (3 Points)"
+    # action: "sweep"
+    # params:
+      # sweep_target: "rx"
+      # axis: "azimuth"
+      # start_angle: -10.0
+      # stop_angle: 10.0
+      # step_angle: 10.0  # -10, 0, 10 (3 puntos)
+      # distance: 2
+      # fixed_angle: 90.0 # other angle not swept (i.e. elevation in this example)
+      # dwell_time: 30
+      
+      # conf_mode: "optimize"
+      # apply_to: "both"
+      # optimizer: "direct_disc"
+
+  - step: "Sweep (test_ris_bf)"
     action: "sweep"
     params:
       sweep_target: "rx"
       axis: "azimuth"
-      start_angle: -10.0
-      stop_angle: 10.0
-      step_angle: 10.0  # -10, 0, 10 (3 puntos)
-      distance: 6.8
+      start_angle: -5.0
+      stop_angle: 5.0
+      step_angle: 1.0  
+      distance: 1.9
       fixed_angle: 90.0 # other angle not swept (i.e. elevation in this example)
-      dwell_time: 30
+      dwell_time: 5
       
       conf_mode: "optimize"
       apply_to: "both"

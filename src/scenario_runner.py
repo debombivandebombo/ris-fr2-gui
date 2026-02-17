@@ -218,7 +218,7 @@ class RISScenarioRunner:
             )
             
             if log_callback:
-                log_callback(f"    >> Swept {axis}={angle_val:.1f}°")
+                log_callback(f"    >> Swept {axis}={angle_val:.1f}°, cart dist rx: {np.round(cart_pos,5)}, cart dist tx {default_fixed_pos}")
 
     def _apply_single_config(self, params, log_callback):
         conf_mode = params.get('conf_mode', 'zeros')
