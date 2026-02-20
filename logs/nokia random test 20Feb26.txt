@@ -1,0 +1,245 @@
+(gw-ris-fr2-gui) C:\Users\usuario\Documents\GitHub\gw-ris-fr2-gui>uv run python run_scenario.py scenarios/test_random_nokia.yaml --ip 127.0.0.1 --port 17000 --influx 10.0.26.5 --json  
+🚀 Starting CLI scenario executor
+📂 Loading scenario: test_random_nokia.yaml
+💾 Local Logging: ENABLED (logs/ folder)
+📡 InfluxDB Sending: ENABLED (10.0.26.5:8094)
+🔌 Connecting to RIS 127.0.0.1:17000...
+📋 Steps detected: 78
+
+----------------------------------------
+🔹 Step 1/78
+[13:12:18] Running: Initialization [power_on]
+----------------------------------------
+🔹 Step 2/78
+[13:12:20] Running: Config All Zeros [configure]
+----------------------------------------
+🔹 Step 3/78
+[13:14:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 4/78
+[13:16:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 5/78
+[13:18:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 6/78
+[13:20:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 7/78
+[13:22:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 8/78
+[13:24:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 9/78
+[13:26:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 10/78
+[13:28:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 11/78
+[13:30:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 12/78
+[13:32:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 13/78
+[13:34:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 14/78
+[13:36:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 15/78
+[13:38:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 16/78
+[13:40:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 17/78
+[13:42:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 18/78
+[13:44:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 19/78
+[13:46:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 20/78
+[13:48:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 21/78
+[13:50:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 22/78
+[13:52:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 23/78
+[13:54:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 24/78
+[13:56:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 25/78
+[13:58:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 26/78
+[14:00:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 27/78
+[14:02:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 28/78
+[14:04:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 29/78
+[14:06:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 30/78
+[14:08:20] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 31/78
+[14:10:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 32/78
+[14:12:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 33/78
+[14:14:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 34/78
+[14:16:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 35/78
+[14:18:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 36/78
+[14:20:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 37/78
+[14:22:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 38/78
+[14:24:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 39/78
+[14:26:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 40/78
+[14:28:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 41/78
+[14:30:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 42/78
+[14:32:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 43/78
+[14:34:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 44/78
+[14:36:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 45/78
+[14:38:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 46/78
+[14:40:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 47/78
+[14:42:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 48/78
+[14:44:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 49/78
+[14:46:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 50/78
+[14:48:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 51/78
+[14:50:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 52/78
+[14:52:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 53/78
+[14:54:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 54/78
+[14:56:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 55/78
+[14:58:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 56/78
+[15:00:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 57/78
+[15:02:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 58/78
+[15:04:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 59/78
+[15:06:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 60/78
+[15:08:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 61/78
+[15:10:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 62/78
+[15:12:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 63/78
+[15:14:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 64/78
+[15:16:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 65/78
+[15:18:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 66/78
+[15:20:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 67/78
+[15:22:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 68/78
+[15:24:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 69/78
+[15:26:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 70/78
+[15:28:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 71/78
+[15:30:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 72/78
+[15:32:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 73/78
+[15:34:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 74/78
+[15:36:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 75/78
+[15:38:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 76/78
+[15:40:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 77/78
+[15:42:21] Running: Random Config [configure]
+----------------------------------------
+🔹 Step 78/78
+[15:44:21] Running: Shutdown [power_off]
+----------------------------------------
+
+✅ Sequence completed successfully.
