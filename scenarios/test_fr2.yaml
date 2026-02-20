@@ -32,7 +32,7 @@ timeline:
     params:
       conf_mode: "zeros"
       apply_to: "both"
-    delay_after: 30
+    delay_after: 2
 
   - step: "Random Config"
     action: "configure"
@@ -40,7 +40,7 @@ timeline:
     params:
       conf_mode: "random"
       apply_to: "both"
-    delay_after: 30
+    delay_after: 2
 
   - step: "Shutdown"
     action: "power_off"
