@@ -198,6 +198,8 @@ class RISScenarioRunner:
             
             t_start = self._get_iso_timestamp()
             ris_config_obj = self._apply_single_config(sweep_point_params, None)
+            if log_callback:
+                log_callback(f"    >> Swept {axis}={angle_val:.1f}°, cart dist rx: {np.round(cart_pos,5)}, cart dist tx {default_fixed_pos}")
             time.sleep(dwell)
             t_end = self._get_iso_timestamp()
             
@@ -216,9 +218,6 @@ class RISScenarioRunner:
                 t_start=t_start,
                 t_end=t_end
             )
-            
-            if log_callback:
-                log_callback(f"    >> Swept {axis}={angle_val:.1f}°, cart dist rx: {np.round(cart_pos,5)}, cart dist tx {default_fixed_pos}")
 
     def _apply_single_config(self, params, log_callback):
         conf_mode = params.get('conf_mode', 'zeros')
