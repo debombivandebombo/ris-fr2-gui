@@ -5,7 +5,7 @@ environment:
     boresight: "x" # String requerido
     ncol: 40
     nrow: 40
-    frequency_hz: 28500.120e6
+    frequency_hz: 28550.120e6
     
     # 1 Bit Configuration (Optional explicitly defined)
     num_bits: 1
