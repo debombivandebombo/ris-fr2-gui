@@ -1,0 +1,114 @@
+PS C:\Users\usuario\Documents\GitHub\gw-ris-fr2-gui> uv run python run_scenario.py scenarios/test_short_nokia_f3.yaml --ip 127.0.0.1 --port 17000 --influx 10.0.26.5 --json
+🚀 Starting CLI scenario executor
+📂 Loading scenario: test_short_nokia_f3.yaml
+💾 Local Logging: ENABLED (logs/ folder)
+📡 InfluxDB Sending: ENABLED (10.0.26.5:8094)
+🔌 Connecting to RIS 127.0.0.1:17000...
+📋 Steps detected: 14
+
+----------------------------------------
+🔹 Step 1/14
+[09:31:31] Running: Initialization [power_on]
+----------------------------------------
+🔹 Step 2/14
+[09:31:33] Running: f=28550.120e6: Config All Zeros [configure]
+----------------------------------------
+🔹 Step 3/14
+[09:33:33] Running: f=28550.120e6: Optimization Case 1 [configure]
+[09:33:33]   Calculating surpRISe optimization...
+----------------------------------------
+🔹 Step 4/14
+[09:35:33] Running: f=28550.120e6: Sweep Rx El_92 [sweep]
+[09:35:33]   > Starting Sweep: 11 points.
+[09:35:33]     >> Swept azimuth=-5.0°, cart dist rx: [ 6.96911 -0.60972 -0.2443 ], cart dist tx [4, 4, 0]
+[09:37:33]     >> Swept azimuth=-4.0°, cart dist rx: [ 6.97869 -0.488   -0.2443 ], cart dist tx [4, 4, 0]
+[09:39:33]     >> Swept azimuth=-3.0°, cart dist rx: [ 6.98615 -0.36613 -0.2443 ], cart dist tx [4, 4, 0]
+[09:41:33]     >> Swept azimuth=-2.0°, cart dist rx: [ 6.99147 -0.24415 -0.2443 ], cart dist tx [4, 4, 0]
+[09:43:33]     >> Swept azimuth=-1.0°, cart dist rx: [ 6.99467 -0.12209 -0.2443 ], cart dist tx [4, 4, 0]
+[09:45:33]     >> Swept azimuth=0.0°, cart dist rx: [ 6.99574  0.      -0.2443 ], cart dist tx [4, 4, 0]
+[09:47:33]     >> Swept azimuth=1.0°, cart dist rx: [ 6.99467  0.12209 -0.2443 ], cart dist tx [4, 4, 0]
+[09:49:33]     >> Swept azimuth=2.0°, cart dist rx: [ 6.99147  0.24415 -0.2443 ], cart dist tx [4, 4, 0]
+[09:51:33]     >> Swept azimuth=3.0°, cart dist rx: [ 6.98615  0.36613 -0.2443 ], cart dist tx [4, 4, 0]
+[09:53:33]     >> Swept azimuth=4.0°, cart dist rx: [ 6.97869  0.488   -0.2443 ], cart dist tx [4, 4, 0]
+[09:55:33]     >> Swept azimuth=5.0°, cart dist rx: [ 6.96911  0.60972 -0.2443 ], cart dist tx [4, 4, 0]
+----------------------------------------
+🔹 Step 5/14
+[09:57:33] Running: f=28550.120e6: Sweep Rx El_91 [sweep]
+[09:57:33]   > Starting Sweep: 11 points.
+[09:57:33]     >> Swept azimuth=-5.0°, cart dist rx: [ 6.9723  -0.61    -0.12217], cart dist tx [4, 4, 0]
+[09:59:33]     >> Swept azimuth=-4.0°, cart dist rx: [ 6.98188 -0.48822 -0.12217], cart dist tx [4, 4, 0]
+[10:01:33]     >> Swept azimuth=-3.0°, cart dist rx: [ 6.98934 -0.3663  -0.12217], cart dist tx [4, 4, 0]
+[10:03:34]     >> Swept azimuth=-2.0°, cart dist rx: [ 6.99467 -0.24426 -0.12217], cart dist tx [4, 4, 0]
+[10:05:34]     >> Swept azimuth=-1.0°, cart dist rx: [ 6.99787 -0.12215 -0.12217], cart dist tx [4, 4, 0]
+[10:07:34]     >> Swept azimuth=0.0°, cart dist rx: [ 6.99893  0.      -0.12217], cart dist tx [4, 4, 0]
+[10:09:34]     >> Swept azimuth=1.0°, cart dist rx: [ 6.99787  0.12215 -0.12217], cart dist tx [4, 4, 0]
+[10:11:34]     >> Swept azimuth=2.0°, cart dist rx: [ 6.99467  0.24426 -0.12217], cart dist tx [4, 4, 0]
+[10:13:34]     >> Swept azimuth=3.0°, cart dist rx: [ 6.98934  0.3663  -0.12217], cart dist tx [4, 4, 0]
+[10:15:34]     >> Swept azimuth=4.0°, cart dist rx: [ 6.98188  0.48822 -0.12217], cart dist tx [4, 4, 0]
+[10:17:34]     >> Swept azimuth=5.0°, cart dist rx: [ 6.9723   0.61    -0.12217], cart dist tx [4, 4, 0]
+----------------------------------------
+🔹 Step 6/14
+[10:19:34] Running: f=28550.120e6: Sweep Rx El_90 [sweep]
+[10:19:34]   > Starting Sweep: 11 points.
+[10:19:34]     >> Swept azimuth=-5.0°, cart dist rx: [ 6.97336 -0.61009  0.     ], cart dist tx [4, 4, 0]
+[10:21:34]     >> Swept azimuth=-4.0°, cart dist rx: [ 6.98295 -0.4883   0.     ], cart dist tx [4, 4, 0]
+[10:23:34]     >> Swept azimuth=-3.0°, cart dist rx: [ 6.99041 -0.36635  0.     ], cart dist tx [4, 4, 0]
+[10:25:34]     >> Swept azimuth=-2.0°, cart dist rx: [ 6.99574 -0.2443   0.     ], cart dist tx [4, 4, 0]
+[10:27:34]     >> Swept azimuth=-1.0°, cart dist rx: [ 6.99893 -0.12217  0.     ], cart dist tx [4, 4, 0]
+[10:29:34]     >> Swept azimuth=0.0°, cart dist rx: [7. 0. 0.], cart dist tx [4, 4, 0]
+[10:31:34]     >> Swept azimuth=1.0°, cart dist rx: [6.99893 0.12217 0.     ], cart dist tx [4, 4, 0]
+[10:33:35]     >> Swept azimuth=2.0°, cart dist rx: [6.99574 0.2443  0.     ], cart dist tx [4, 4, 0]
+[10:35:35]     >> Swept azimuth=3.0°, cart dist rx: [6.99041 0.36635 0.     ], cart dist tx [4, 4, 0]
+[10:37:35]     >> Swept azimuth=4.0°, cart dist rx: [6.98295 0.4883  0.     ], cart dist tx [4, 4, 0]
+[10:39:35]     >> Swept azimuth=5.0°, cart dist rx: [6.97336 0.61009 0.     ], cart dist tx [4, 4, 0]
+----------------------------------------
+🔹 Step 7/14
+[10:41:35] Running: f=28550.120e6: Sweep Rx El_89 [sweep]
+[10:41:35]   > Starting Sweep: 11 points.
+[10:41:35]     >> Swept azimuth=-5.0°, cart dist rx: [ 6.9723  -0.61     0.12217], cart dist tx [4, 4, 0]
+[10:43:35]     >> Swept azimuth=-4.0°, cart dist rx: [ 6.98188 -0.48822  0.12217], cart dist tx [4, 4, 0]
+[10:45:35]     >> Swept azimuth=-3.0°, cart dist rx: [ 6.98934 -0.3663   0.12217], cart dist tx [4, 4, 0]
+[10:47:35]     >> Swept azimuth=-2.0°, cart dist rx: [ 6.99467 -0.24426  0.12217], cart dist tx [4, 4, 0]
+[10:49:35]     >> Swept azimuth=-1.0°, cart dist rx: [ 6.99787 -0.12215  0.12217], cart dist tx [4, 4, 0]
+[10:51:35]     >> Swept azimuth=0.0°, cart dist rx: [6.99893 0.      0.12217], cart dist tx [4, 4, 0]
+[10:53:35]     >> Swept azimuth=1.0°, cart dist rx: [6.99787 0.12215 0.12217], cart dist tx [4, 4, 0]
+[10:55:35]     >> Swept azimuth=2.0°, cart dist rx: [6.99467 0.24426 0.12217], cart dist tx [4, 4, 0]
+[10:57:35]     >> Swept azimuth=3.0°, cart dist rx: [6.98934 0.3663  0.12217], cart dist tx [4, 4, 0]
+[10:59:35]     >> Swept azimuth=4.0°, cart dist rx: [6.98188 0.48822 0.12217], cart dist tx [4, 4, 0]
+[11:01:35]     >> Swept azimuth=5.0°, cart dist rx: [6.9723  0.61    0.12217], cart dist tx [4, 4, 0]
+----------------------------------------
+🔹 Step 8/14
+[11:03:35] Running: f=28550.120e6: Sweep Rx El_88 [sweep]
+[11:03:35]   > Starting Sweep: 11 points.
+[11:03:35]     >> Swept azimuth=-5.0°, cart dist rx: [ 6.96911 -0.60972  0.2443 ], cart dist tx [4, 4, 0]
+[11:05:35]     >> Swept azimuth=-4.0°, cart dist rx: [ 6.97869 -0.488    0.2443 ], cart dist tx [4, 4, 0]
+[11:07:35]     >> Swept azimuth=-3.0°, cart dist rx: [ 6.98615 -0.36613  0.2443 ], cart dist tx [4, 4, 0]
+[11:09:35]     >> Swept azimuth=-2.0°, cart dist rx: [ 6.99147 -0.24415  0.2443 ], cart dist tx [4, 4, 0]
+[11:11:35]     >> Swept azimuth=-1.0°, cart dist rx: [ 6.99467 -0.12209  0.2443 ], cart dist tx [4, 4, 0]
+[11:13:35]     >> Swept azimuth=0.0°, cart dist rx: [6.99574 0.      0.2443 ], cart dist tx [4, 4, 0]
+[11:15:35]     >> Swept azimuth=1.0°, cart dist rx: [6.99467 0.12209 0.2443 ], cart dist tx [4, 4, 0]
+[11:17:35]     >> Swept azimuth=2.0°, cart dist rx: [6.99147 0.24415 0.2443 ], cart dist tx [4, 4, 0]
+[11:19:35]     >> Swept azimuth=3.0°, cart dist rx: [6.98615 0.36613 0.2443 ], cart dist tx [4, 4, 0]
+[11:21:35]     >> Swept azimuth=4.0°, cart dist rx: [6.97869 0.488   0.2443 ], cart dist tx [4, 4, 0]
+[11:23:35]     >> Swept azimuth=5.0°, cart dist rx: [6.96911 0.60972 0.2443 ], cart dist tx [4, 4, 0]
+----------------------------------------
+🔹 Step 9/14
+[11:25:35] Running: f=28550.120e6: Random Config [configure]
+----------------------------------------
+🔹 Step 10/14
+[11:27:35] Running: f=28550.120e6: Random Config [configure]
+----------------------------------------
+🔹 Step 11/14
+[11:29:35] Running: f=28550.120e6: Random Config [configure]
+----------------------------------------
+🔹 Step 12/14
+[11:31:35] Running: f=28550.120e6: Random Config [configure]
+----------------------------------------
+🔹 Step 13/14
+[11:33:35] Running: f=28550.120e6: Random Config [configure]
+----------------------------------------
+🔹 Step 14/14
+[11:35:35] Running: Shutdown [power_off]
+----------------------------------------
+
+✅ Sequence completed successfully.
