@@ -3,6 +3,8 @@ import yaml
 import sys
 import time
 from pathlib import Path
+import subprocess
+import platform
 
 # --- 1. CONFIGURATION OF PATHS ---
 ROOT_DIR = Path(__file__).parent
@@ -57,6 +59,17 @@ def main():
 
     if args.influx:
         print(f"📡 InfluxDB Sending: ENABLED ({args.influx}:8094)")
+
+        # Determinamos el parámetro según el sistema operativo (-n en Windows, -c en resto)
+        param = "-n" if platform.system().lower() == "windows" else "-c"
+        command = ["ping", param, "1", args.influx]
+        
+        # Ejecutamos el ping de forma silenciosa
+        ping_check = subprocess.run(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        
+        if ping_check.returncode != 0:
+            print(f"❌ Test parado: La IP de InfluxDB ({args.influx}) no responde al ping.")
+            sys.exit(1)
     else:
         print(f"📡 InfluxDB Sending: DISABLED")
 
