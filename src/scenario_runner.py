@@ -121,9 +121,6 @@ class RISScenarioRunner:
 
     def _get_iso_timestamp(self):
         """Genera timestamp RFC 3339 explícito en UTC con precisión de microsegundos."""
-        # datetime.now(timezone.utc) asegura que es UTC+0 consciente.
-        # .isoformat() genera: '2026-02-12T20:30:45.123456+00:00'
-        # .replace() cambia el offset por la 'Z' militar/Zulu.
         return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
     def _handle_configure(self, step_data, log_callback):
@@ -136,7 +133,26 @@ class RISScenarioRunner:
         run_params['tx_pos'] = tx_pos
         run_params['rx_pos'] = rx_pos
 
-        # Capturar timestamp como STRING ISO (ZULU)
+        # --- GENERACIÓN DE TAGS ---
+        freq = float(self.env_config['ris_params'].get('frequency_hz', 28.5e9))
+        pol = params.get('apply_to', 'both')
+        conf_mode = params.get('conf_mode', 'zeros')
+        
+        # Mapeamos 'optimize' a 'opt' según tus especificaciones
+        action_tag = "opt" if conf_mode == "optimize" else conf_mode
+        
+        tags = {
+            "freq": freq,
+            "pol": pol,
+            "action": action_tag
+        }
+        
+        if action_tag == "opt":
+            defaults = self.env_config.get('defaults', {})
+            tags["alg"] = params.get('optimizer', 'direct_disc')
+            tags["wave_model"] = params.get('wave_model', defaults.get('wave_model', 'spherical'))
+        # --------------------------
+
         t_start = self._get_iso_timestamp()
         ris_config_obj = self._apply_single_config(run_params, log_callback)
         if delay > 0: time.sleep(delay)
@@ -148,7 +164,8 @@ class RISScenarioRunner:
             tx_pos=tx_pos,
             rx_pos=rx_pos,
             t_start=t_start,
-            t_end=t_end
+            t_end=t_end,
+            tags=tags
         )
 
     def _handle_sweep(self, step_data, log_callback):
@@ -173,6 +190,21 @@ class RISScenarioRunner:
         default_fixed_ang = 90.0 if axis == 'azimuth' else 0.0
         fixed_angle = params.get('fixed_angle', default_fixed_ang)
 
+        # --- GENERACIÓN DE TAGS BASE PARA SWEEP ---
+        freq = float(self.env_config['ris_params'].get('frequency_hz', 28.5e9))
+        pol = params.get('apply_to', 'both')
+        defaults = self.env_config.get('defaults', {})
+        
+        base_tags = {
+            "freq": freq,
+            "pol": pol,
+            "action": "sweep",
+            "alg": params.get('optimizer', 'direct_disc'),
+            "wave_model": params.get('wave_model', defaults.get('wave_model', 'spherical')),
+            "sweep_target": target_type
+        }
+        # ------------------------------------------
+
         if log_callback:
             log_callback(f"  > Starting Sweep: {len(angles)} points.")
 
@@ -195,11 +227,19 @@ class RISScenarioRunner:
                 
             sweep_point_params['tx_pos'] = tx_pos_now
             sweep_point_params['rx_pos'] = rx_pos_now
+
+            # Construir tags de este punto específico
+            point_tags = base_tags.copy()
+            point_tags["r"] = float(dist)
+            point_tags["phi"] = float(az)
+            point_tags["theta"] = float(el)
             
             t_start = self._get_iso_timestamp()
             ris_config_obj = self._apply_single_config(sweep_point_params, None)
+            
             if log_callback:
-                log_callback(f"    >> Swept {axis}={angle_val:.1f}°, cart dist rx: {np.round(cart_pos,5)}, cart dist tx {default_fixed_pos}")
+                log_callback(f"    >> Swept {axis}={angle_val:.1f}°, cart dist rx: {np.round(rx_pos_now,5)}, cart dist tx {np.round(tx_pos_now,5)}")
+            
             time.sleep(dwell)
             t_end = self._get_iso_timestamp()
             
@@ -216,7 +256,8 @@ class RISScenarioRunner:
                 tx_pos=tx_pos_now,
                 rx_pos=rx_pos_now,
                 t_start=t_start,
-                t_end=t_end
+                t_end=t_end,
+                tags=point_tags
             )
 
     def _apply_single_config(self, params, log_callback):
@@ -273,9 +314,11 @@ class RISScenarioRunner:
         
     # --- LOGGING & INFLUX INTEGRATION ---
 
-    def _process_logging(self, step_info, ris_config: RISConfig, tx_pos, rx_pos, t_start, t_end):
+    def _process_logging(self, step_info, ris_config: RISConfig, tx_pos, rx_pos, t_start, t_end, tags: Dict[str, Any] = None):
         """Orquesta el guardado local y el envío a Influx."""
-        
+        if tags is None:
+            tags = {}
+            
         # 1. Preparar datos crudos (Raw Data)
         v_flat = ris_config.state_matrix_v[::-1, :].T.flatten().astype(int)
         h_flat = ris_config.state_matrix_h[::-1, :].T.flatten().astype(int)
@@ -292,7 +335,8 @@ class RISScenarioRunner:
             "tx_position": [float(x) for x in tx_pos],
             "rx_position": [float(x) for x in rx_pos],
             "command_info": json.dumps(step_info), # JSON stringified
-            "bit_pattern": full_pattern
+            "bit_pattern": full_pattern,
+            "tags": tags  # Se añaden los tags al record JSON
         }
         
         # 2. Guardar Local (JSONL) - SOLO SI ESTÁ HABILITADO
@@ -308,7 +352,7 @@ class RISScenarioRunner:
             self._send_to_influx(record)
 
     def _send_to_influx(self, record):
-        """Replica la lógica de send_to_telegraf_date.py integrada aquí."""
+        """Replica la lógica de send_to_telegraf_date_new.py integrada aquí."""
         try:
             # ----------------------------------------------------
             # A. Procesar Datos para Influx (Flattening y Hex)
@@ -330,10 +374,10 @@ class RISScenarioRunner:
             # 3200 bits -> hex string (800 chars)
             bit_pattern_hex = hex(int(bit_pattern_str, 2))[2:].zfill(800)
             
-            # Añadir restos de fields (USANDO NOMBRES DE send_to_telegraf_date.py)
+            # Añadir restos de fields 
             data_fields["bit_pattern_hex"] = bit_pattern_hex
-            data_fields["ts_start"] = record["timestamp_start"] # Nombre cambiado
-            data_fields["ts_end"] = record["timestamp_end"]     # Nombre cambiado
+            data_fields["ts_start"] = record["timestamp_start"]
+            data_fields["ts_end"] = record["timestamp_end"]
 
             # ----------------------------------------------------
             # B. Helpers de Escape (Line Protocol)
@@ -348,9 +392,18 @@ class RISScenarioRunner:
             # C. Construir Line Protocol String
             # ----------------------------------------------------
             # TAGS
-            # command_info se usa como TAG
+            tags_list = []
+            
+            # command_info se usa como TAG requerido
             cmd_info = record["command_info"]
-            tags = f'command_info="{escape_tag(cmd_info)}"'
+            tags_list.append(f"command_info={escape_tag(str(cmd_info))}")
+
+            # Optional tags desde el diccionario 'tags'
+            extra_tags = record.get("tags") or {}
+            for k, v in extra_tags.items():
+                tags_list.append(f"{escape_tag(k)}={escape_tag(str(v))}")
+                
+            tags_str = ",".join(tags_list)
 
             # FIELDS
             fields_list = []
@@ -360,7 +413,7 @@ class RISScenarioRunner:
                 else:
                     fields_list.append(f"{k}={v}")
 
-            line = f"{self.measurement_name},{tags} " + ",".join(fields_list)
+            line = f"{self.measurement_name},{tags_str} " + ",".join(fields_list)
             
             # ----------------------------------------------------
             # D. Enviar UDP
