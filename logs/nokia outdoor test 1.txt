@@ -1,0 +1,46 @@
+PS C:\Users\SergioMR\Documents\Github\gw-ris-fr2-gui> uv run python run_scenario.py scenarios/test_outdoor_nokia.yaml --ip 127.0.0.1 --port 17000
+🚀 Starting CLI scenario executor
+📂 Loading scenario: test_outdoor_nokia.yaml
+💾 Local Logging: DISABLED
+📡 InfluxDB Sending: DISABLED
+🔌 Connecting to RIS 127.0.0.1:17000...
+📋 Steps detected: 6
+
+----------------------------------------
+🔹 Step 1/6
+[16:30:55] Running: Initialization [power_on]
+----------------------------------------
+🔹 Step 2/6
+[16:30:56] Running: f=28500.120e6: Config All Zeros [configure]
+----------------------------------------
+🔹 Step 3/6
+[16:31:56] Running: f=28500.120e6: Optimization Case 1 [configure]
+[16:31:56]   Calculating surpRISe optimization...
+----------------------------------------
+🔹 Step 4/6
+[16:32:56] Running: f=28500.120e6: Sweep Rx El_90 [sweep]
+[16:32:56]   > Starting Sweep: 7 points.
+[16:32:56]     >> Swept azimuth=-3.0°, cart dist rx: [29.95889 -1.57008  0.     ], cart dist tx [ 1.75 -1.75  0.  ]
+[16:33:56]     >> Swept azimuth=-2.0°, cart dist rx: [29.98172 -1.04698  0.     ], cart dist tx [ 1.75 -1.75  0.  ]
+[16:34:56]     >> Swept azimuth=-1.0°, cart dist rx: [29.99543 -0.52357  0.     ], cart dist tx [ 1.75 -1.75  0.  ]
+[16:35:56]     >> Swept azimuth=0.0°, cart dist rx: [30.  0.  0.], cart dist tx [ 1.75 -1.75  0.  ]
+[16:36:56]     >> Swept azimuth=1.0°, cart dist rx: [29.99543  0.52357  0.     ], cart dist tx [ 1.75 -1.75  0.  ]
+[16:37:56]     >> Swept azimuth=2.0°, cart dist rx: [29.98172  1.04698  0.     ], cart dist tx [ 1.75 -1.75  0.  ]
+[16:38:56]     >> Swept azimuth=3.0°, cart dist rx: [29.95889  1.57008  0.     ], cart dist tx [ 1.75 -1.75  0.  ]
+----------------------------------------
+🔹 Step 5/6
+[16:39:56] Running: f=28500.120e6: Sweep Rx El_91 [sweep]
+[16:39:56]   > Starting Sweep: 7 points.
+[16:39:56]     >> Swept azimuth=-3.0°, cart dist rx: [29.95432 -1.56984 -0.52357], cart dist tx [ 1.75 -1.75  0.  ]
+[16:40:56]     >> Swept azimuth=-2.0°, cart dist rx: [29.97716 -1.04683 -0.52357], cart dist tx [ 1.75 -1.75  0.  ]
+[16:41:56]     >> Swept azimuth=-1.0°, cart dist rx: [29.99086 -0.52349 -0.52357], cart dist tx [ 1.75 -1.75  0.  ]
+[16:42:56]     >> Swept azimuth=0.0°, cart dist rx: [29.99543  0.      -0.52357], cart dist tx [ 1.75 -1.75  0.  ]
+[16:43:56]     >> Swept azimuth=1.0°, cart dist rx: [29.99086  0.52349 -0.52357], cart dist tx [ 1.75 -1.75  0.  ]
+[16:44:56]     >> Swept azimuth=2.0°, cart dist rx: [29.97716  1.04683 -0.52357], cart dist tx [ 1.75 -1.75  0.  ]
+[16:45:56]     >> Swept azimuth=3.0°, cart dist rx: [29.95432  1.56984 -0.52357], cart dist tx [ 1.75 -1.75  0.  ]
+----------------------------------------
+🔹 Step 6/6
+[16:46:56] Running: Shutdown [power_off]
+----------------------------------------
+
+✅ Sequence completed successfully.
