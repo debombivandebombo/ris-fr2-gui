@@ -71,7 +71,7 @@ timeline:
       step_angle: 1.0  
       distance: 1.9
       fixed_angle: 90.0 # other angle not swept (i.e. elevation in this example)
-      dwell_time: 5
+      dwell_time: 3
       
       conf_mode: "optimize"
       apply_to: "both"

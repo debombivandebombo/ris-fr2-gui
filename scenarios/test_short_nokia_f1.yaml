@@ -3,9 +3,9 @@ environment:
     name: "RIS_Lab_Test"
     center: [0.0, 0.0, 0.0]
     boresight: "x" # String requerido
-    ncol: 40
-    nrow: 40
-    frequency_hz: 28450.120e6
+    ncol: 8
+    nrow: 8
+    frequency_hz: 3750.0e6
     
     # 1 Bit Configuration (Optional explicitly defined)
     num_bits: 1
@@ -21,15 +21,15 @@ environment:
     rx_gain: 16
     wave_model: "spherical"
     # --- POSICIONES GENÉRICAS / REALES ---
-    tx_pos: [4, 4, 0]  # TX físico real
-    rx_pos: [7, 0, -0.2]   # RX físico real (para pasos estáticos)
+    tx_pos: [3.38, 3.53, 0]  # TX físico real
+    rx_pos: [7, 0, -0.25]   # RX físico real (para pasos estáticos)
 
 timeline:
   - step: "Initialization"
     action: "power_on"
     delay_after: 2
 
-  - step: "f=28450.120e6: Config All Zeros"
+  - step: "Config All Zeros"
     action: "configure"
     # Ahora agrupados en params
     params:
@@ -37,7 +37,7 @@ timeline:
       apply_to: "both"
     delay_after: 120
 
-  - step: "f=28450.120e6: Optimization Case 1"
+  - step: "Optimization Case 1"
     action: "configure"
     params:
       conf_mode: "optimize"
@@ -45,16 +45,32 @@ timeline:
       optimizer: "direct_disc"
     delay_after: 120
 
+  - step: "Optimization Case 1"
+    action: "configure"
+    params:
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+    delay_after: 120
+
+  - step: "Optimization Case 1"
+    action: "configure"
+    params:
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+    delay_after: 120
 
 
-  - step: "f=28450.120e6: Sweep Rx El_92"
+
+  - step: "Sweep Rx El_92"
     action: "sweep"
     params:
       sweep_target: "rx"
       axis: "azimuth"
-      start_angle: -5.0
-      stop_angle: 5.0
-      step_angle: 1.0
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
       distance: 7
       fixed_angle: 92.0 # other angle not swept (i.e. elevation in this example)
       dwell_time: 120
@@ -63,73 +79,645 @@ timeline:
       apply_to: "both"
       optimizer: "direct_disc"
 
-  - step: "f=28450.120e6: Sweep Rx El_91"
+  - step: "Sweep Rx El_92"
     action: "sweep"
     params:
       sweep_target: "rx"
       axis: "azimuth"
-      start_angle: -5.0
-      stop_angle: 5.0
-      step_angle: 1.0
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
       distance: 7
-      fixed_angle: 91.0 # other angle not swept (i.e. elevation in this example)
+      fixed_angle: 92.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_92"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 92.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_87"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 87.0 # other angle not swept (i.e. elevation in this example)
       dwell_time: 120
       
       conf_mode: "optimize"
       apply_to: "both"
       optimizer: "direct_disc"
 
-  - step: "f=28450.120e6: Sweep Rx El_90"
+  - step: "Sweep Rx El_87"
     action: "sweep"
     params:
       sweep_target: "rx"
       axis: "azimuth"
-      start_angle: -5.0
-      stop_angle: 5.0
-      step_angle: 1.0
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
       distance: 7
-      fixed_angle: 90.0 # other angle not swept (i.e. elevation in this example)
+      fixed_angle: 87.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_87"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 87.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+
+  - step: "Sweep Rx El_82"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 82.0 # other angle not swept (i.e. elevation in this example)
       dwell_time: 120
       
       conf_mode: "optimize"
       apply_to: "both"
       optimizer: "direct_disc"
 
-  - step: "f=28450.120e6: Sweep Rx El_89"
+  - step: "Sweep Rx El_82"
     action: "sweep"
     params:
       sweep_target: "rx"
       axis: "azimuth"
-      start_angle: -5.0
-      stop_angle: 5.0
-      step_angle: 1.0
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
       distance: 7
-      fixed_angle: 89.0 # other angle not swept (i.e. elevation in this example)
+      fixed_angle: 82.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_82"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 82.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_77"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 77.0 # other angle not swept (i.e. elevation in this example)
       dwell_time: 120
       
       conf_mode: "optimize"
       apply_to: "both"
       optimizer: "direct_disc"
 
-  - step: "f=28450.120e6: Sweep Rx El_88"
+  - step: "Sweep Rx El_77"
     action: "sweep"
     params:
       sweep_target: "rx"
       axis: "azimuth"
-      start_angle: -5.0
-      stop_angle: 5.0
-      step_angle: 1.0
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
       distance: 7
-      fixed_angle: 88.0 # other angle not swept (i.e. elevation in this example)
+      fixed_angle: 77.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_77"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 77.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+
+  - step: "Sweep Rx El_72"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 72.0 # other angle not swept (i.e. elevation in this example)
       dwell_time: 120
       
       conf_mode: "optimize"
       apply_to: "both"
       optimizer: "direct_disc"
 
+  - step: "Sweep Rx El_72"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 72.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
 
 
-  - step: "f=28450.120e6: Random Config"
+  - step: "Sweep Rx El_72"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 72.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_67"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 67.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_67"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 67.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_67"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 67.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_62"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 62.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_62"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 62.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_62"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 62.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_97"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 97.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_97"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 97.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_97"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 97.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_102"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 102.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_102"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 102.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_102"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 102.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_107"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 107.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_107"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 107.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_107"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 107.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_112"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 112.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_112"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 112.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_112"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 112.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_117"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 117.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_117"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 117.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_117"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 117.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+  - step: "Sweep Rx El_122"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 122.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+
+  - step: "Sweep Rx El_122"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 122.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "grid_search"
+
+
+  - step: "Sweep Rx El_122"
+    action: "sweep"
+    params:
+      sweep_target: "rx"
+      axis: "azimuth"
+      start_angle: -60.0
+      stop_angle: 60.0
+      step_angle: 5.0
+      distance: 7
+      fixed_angle: 122.0 # other angle not swept (i.e. elevation in this example)
+      dwell_time: 120
+      
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "1d_search"
+
+
+
+
+  - step: "Random Config"
     action: "configure"
     # Ahora agrupados en params
     params:
@@ -137,7 +725,7 @@ timeline:
       apply_to: "both"
     delay_after: 120
 
-  - step: "f=28450.120e6: Random Config"
+  - step: "Random Config"
     action: "configure"
     # Ahora agrupados en params
     params:
@@ -145,7 +733,7 @@ timeline:
       apply_to: "both"
     delay_after: 120
 
-  - step: "f=28450.120e6: Random Config"
+  - step: "Random Config"
     action: "configure"
     # Ahora agrupados en params
     params:
@@ -153,7 +741,7 @@ timeline:
       apply_to: "both"
     delay_after: 120
 
-  - step: "f=28450.120e6: Random Config"
+  - step: "Random Config"
     action: "configure"
     # Ahora agrupados en params
     params:
@@ -161,7 +749,7 @@ timeline:
       apply_to: "both"
     delay_after: 120
 
-  - step: "f=28450.120e6: Random Config"
+  - step: "Random Config"
     action: "configure"
     # Ahora agrupados en params
     params:
