@@ -1,0 +1,110 @@
+environment:
+  ris_params:
+    name: "RIS_Lab_Test"
+    center: [0.0, 0.0, 0.0]
+    boresight: "x" # String requerido
+    ncol: 8
+    nrow: 8
+    frequency_hz: 3750.0e6
+    
+    # 1 Bit Configuration (Optional explicitly defined)
+    num_bits: 1
+    phase_shifts_dict:
+      0: 0.0
+      1: 3.14159
+    att_dict:
+      0: 0.9
+      1: 0.9
+
+  defaults:
+    tx_gain: 16
+    rx_gain: 16
+    wave_model: "spherical"
+    # --- POSICIONES GENÉRICAS / REALES ---
+    tx_pos: [6.3, 0, 0]  # TX físico real
+    rx_pos: [4.30, 3.7, 0]   # RX físico real (para pasos estáticos)
+
+timeline:
+  - step: "Initialization"
+    action: "power_on"
+    delay_after: 2
+
+  # - step: "Config All Zeros"
+  #   action: "configure"
+  #   params:
+  #     conf_mode: "zeros"
+  #     apply_to: "both"
+  #   delay_after: 120
+
+  - step: "Optimization Case 1"
+    action: "configure"
+    params:
+      conf_mode: "optimize"
+      apply_to: "both"
+      optimizer: "direct_disc"
+    delay_after: 12000
+
+
+
+  # - step: "Sweep Rx El_90"
+  #   action: "sweep"
+  #   params:
+  #     sweep_target: "rx"
+  #     axis: "azimuth"
+  #     start_angle: 20.0
+  #     stop_angle: 60.0
+  #     step_angle: 10.0
+  #     distance: 5.7
+  #     fixed_angle: 90 # other angle not swept (i.e. elevation in this example)
+  #     dwell_time: 120
+      
+  #     conf_mode: "optimize"
+  #     apply_to: "both"
+  #     optimizer: "direct_disc"
+
+  # - step: "Sweep Rx El_80"
+  #   action: "sweep"
+  #   params:
+  #     sweep_target: "rx"
+  #     axis: "azimuth"
+  #     start_angle: 20.0
+  #     stop_angle: 60.0
+  #     step_angle: 10.0
+  #     distance: 5.7
+  #     fixed_angle: 80 # other angle not swept (i.e. elevation in this example)
+  #     dwell_time: 120
+      
+  #     conf_mode: "optimize"
+  #     apply_to: "both"
+  #     optimizer: "direct_disc"
+
+  # - step: "Sweep Rx El_100"
+  #   action: "sweep"
+  #   params:
+  #     sweep_target: "rx"
+  #     axis: "azimuth"
+  #     start_angle: 20.0
+  #     stop_angle: 60.0
+  #     step_angle: 10.0
+  #     distance: 5.7
+  #     fixed_angle: 100 # other angle not swept (i.e. elevation in this example)
+  #     dwell_time: 120
+      
+  #     conf_mode: "optimize"
+  #     apply_to: "both"
+  #     optimizer: "direct_disc"
+
+
+
+
+  # - step: "Random Config"
+  #   action: "configure"
+  #   # Ahora agrupados en params
+  #   params:
+  #     conf_mode: "random"
+  #     apply_to: "both"
+  #   delay_after: 120
+
+
+  - step: "Shutdown"
+    action: "power_off"

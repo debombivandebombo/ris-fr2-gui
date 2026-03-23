@@ -1,0 +1,37 @@
+PS C:\Users\usuario\Documents\GitHub\gw-ris-fr2-gui> uv run python run_scenario.py scenarios/test_gradiant_vlc_beamsweep.yaml --ip 127.0.0.1 --port 18000 --json
+🚀 Starting CLI scenario executor
+📂 Loading scenario: test_gradiant_vlc_beamsweep.yaml
+💾 Local Logging: ENABLED (logs/ folder)
+📡 InfluxDB Sending: DISABLED
+🔌 Connecting to RIS 127.0.0.1:18000...
+📋 Steps detected: 5
+
+----------------------------------------
+🔹 Step 1/5
+[16:42:24] Running: Initialization [power_on]
+----------------------------------------
+🔹 Step 2/5
+[16:42:34] Running: Config All Zeros [configure]
+----------------------------------------
+🔹 Step 3/5
+[16:43:34] Running: Optimization [configure]
+[16:43:34]   Calculating surpRISe optimization...
+----------------------------------------
+🔹 Step 4/5
+[16:44:34] Running: Sweep Rx [sweep]
+[16:44:34]   > Starting Sweep: 9 points.
+[16:44:34]     >> Swept azimuth=-40.0°, cart dist rx: [ 4.04861 -3.39718 -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:45:34]     >> Swept azimuth=-30.0°, cart dist rx: [ 4.57701 -2.64254 -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:46:34]     >> Swept azimuth=-20.0°, cart dist rx: [ 4.96635 -1.8076  -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:47:34]     >> Swept azimuth=-10.0°, cart dist rx: [ 5.20479 -0.91774 -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:48:34]     >> Swept azimuth=0.0°, cart dist rx: [ 5.28508  0.      -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:49:34]     >> Swept azimuth=10.0°, cart dist rx: [ 5.20479  0.91774 -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:50:34]     >> Swept azimuth=20.0°, cart dist rx: [ 4.96635  1.8076  -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:51:34]     >> Swept azimuth=30.0°, cart dist rx: [ 4.57701  2.64254 -0.39739], cart dist tx [3.53 2.5  0.  ]
+[16:52:34]     >> Swept azimuth=40.0°, cart dist rx: [ 4.04861  3.39718 -0.39739], cart dist tx [3.53 2.5  0.  ]
+----------------------------------------
+🔹 Step 5/5
+[16:53:34] Running: Shutdown [power_off]
+----------------------------------------
+
+✅ Sequence completed successfully.
